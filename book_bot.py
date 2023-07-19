@@ -8,6 +8,19 @@ names = ["Bronson", "Adam", "Alain", "Ethan", "Eardwulf", "Santiago", "Daniel", 
 
 
 
+# Book list
+book_names = ['Batman: The Killing Joke - Alan Moore','Spider-Man: Fake Red - Yusuke Osawa','Guardians of the Galaxy #1 - Collin Kelly, Jackson Lanzing',
+               'Mad Max: Fury Road - George Miller, Nico Lathouris, Mark Sexton','Lady Snowblood, Vol. 4: Retribution, Part 2 - Kazuo Koike',
+               'Ghost in the Shell: Stand Alone Complex, Vol. 3: White Maze - Junichi Fujisaku','Watchmen - Alan Moore',
+               'The Art of War - Sun Tzu','The Epic of Gilgamesh - Sin-Leqi-Unninni','Divine Comedy - Dante Alighieri','Les Miserables - Victor Hugo','The Bible - Unknown']
+
+
+
+# Price list
+book_prices = [3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 13.50, 13.50, 13.50, 13.50, 13.50]
+
+
+
 # Customer details dictionary
 customer_details = {}
 
@@ -116,6 +129,15 @@ def delivery_info():
     print (customer_details['suburb'])
     print (customer_details)
 
+# Book menu
+def menu():
+    number_books = 12
+
+    for count in range (number_books):
+        print("{} {} ${:.2f}" .format(count+1,book_names[count],book_prices[count]))
+
+
+
 # Main function
 def main():
     '''
@@ -127,5 +149,6 @@ def main():
     '''
     welcome()
     order_type()
+    menu()
 
 main()
