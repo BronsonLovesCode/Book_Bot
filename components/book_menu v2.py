@@ -14,6 +14,6 @@ def menu():
 #num_books = int(input())
 
     for count in range (number_books):
-        print(count,book_names[count],book_prices[count])
+        print("{} {} ${:.2f}" .format(count+1,book_names[count],book_prices[count]))
 
 menu()
