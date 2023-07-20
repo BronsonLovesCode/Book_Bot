@@ -139,6 +139,8 @@ def delivery_info():
     print (customer_details['suburb'])
     print (customer_details)
 
+
+
 # Book menu
 def menu():
     number_books = 12
@@ -147,6 +149,48 @@ def menu():
         print("{} {} ${:.2f}" .format(count+1,book_names[count],book_prices[count]))
 
 
+
+# Choose total number of books - max 7
+# Book order - from menu - print each book ordered with cast
+def order_books():
+# Ask for total number of books for order
+    num_books = 0
+
+    while True:
+        try:
+            num_books = int(input("How many books do you wish to order? "))
+            if num_books >= 1 and num_books <= 7:
+                break
+            else:
+                print("*** ORDER MUST BE BETWEEN 1 and 7 *** ")
+        except ValueError:
+            print("*** INVALID INPUT ***")
+            print("Please enter a number between 1 and 7. ")
+
+
+    print(num_books)
+
+# Choose books from menu
+    for item in range(num_books):
+        while num_books > 0:
+            while True:
+                try:
+                    books_ordered = int(input("Please choose your book(s) by entering the corresponding number from the menu. "))
+                    if books_ordered >= 1 and books_ordered <= 12:
+                        break
+                    else:
+                        print("*** ORDER MUST BE BETWEEN 1 and 7 *** ")
+                except ValueError:
+                    print("*** INVALID INPUT ***")
+                    print("Please enter a number between 1 and 7. ")
+            books_ordered = books_ordered -1
+            order_list.append(book_names[books_ordered])
+            order_cost.append(book_prices[books_ordered])
+            print("{} ${:.2f}" .format(book_names[books_ordered],book_prices[books_ordered]))
+            num_books = num_books-1
+
+    print(order_list)
+    print(order_cost)
 
 # Main function
 def main():
@@ -160,5 +204,6 @@ def main():
     welcome()
     order_type()
     menu()
+    order_books()
 
 main()
