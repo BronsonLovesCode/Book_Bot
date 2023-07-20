@@ -21,6 +21,16 @@ book_prices = [3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 13.50, 13.50, 13.50, 13
 
 
 
+# List to store ordered books
+order_list = []
+
+
+
+# List to store book prices
+order_cost = []
+
+
+
 # Customer details dictionary
 customer_details = {}
 

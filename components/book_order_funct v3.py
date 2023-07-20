@@ -40,10 +40,18 @@ while True:
 print(num_books)
 
 # Choose books from menu
-print("Please choose your book(s) by entering the corresponding number from the menu. ")
 for item in range(num_books):
     while num_books > 0:
-        books_ordered = int(input())
+        while True:
+            try:
+                books_ordered = int(input("Please choose your book(s) by entering the corresponding number from the menu. "))
+                if books_ordered >= 1 and books_ordered <= 12:
+                    break
+                else:
+                    print("*** ORDER MUST BE BETWEEN 1 and 7 *** ")
+            except ValueError:
+                print("*** INVALID INPUT ***")
+                print("Please enter a number between 1 and 7. ")
         books_ordered = books_ordered -1
         order_list.append(book_names[books_ordered])
         order_cost.append(book_prices[books_ordered])
