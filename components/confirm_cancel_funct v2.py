@@ -11,8 +11,8 @@ while True:
                         print ()
                         print ("*** ORDER CONFIRMED ***")
                         print ()
-                        print ("Your order has been sent to our kitchen to be prepared,")
-                        print ("your pizza will be with you shortly!")
+                        print ("Your order has been sent to our store to be prepared,")
+                        print ("your book(s) will be with you shortly!")
                         print ()
                         break
 
