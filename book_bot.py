@@ -1,3 +1,4 @@
+import sys
 import random
 from random import randint
 
@@ -253,6 +254,39 @@ def confirm_cancel():
                   print ("Please enter 1 or 2. ")
                   print ()
 
+# Option for new order/exit
+def new_exit():
+    print ("Do you wish to start another order or exit?")
+    print ("To start another order, enter 1.")
+    print ("To exit the BOT, enter 2. ")
+
+    while True:
+        try:
+                confirm = int(input("Please enter a number. "))
+                if confirm >= 1 and confirm <= 2:
+                    if confirm == 1:
+                            print ("*** NEW ORDER ***")
+                            order_list.clear()
+                            order_cost.clear()
+                            customer_details.clear()
+                            main()
+                            break
+
+                    elif confirm == 2:
+                            print ("*** EXITING BOT ***")
+                            order_list.clear()
+                            order_cost.clear()
+                            customer_details.clear()
+                            sys.exit()                       
+                            break
+                else:
+                    print ("*** NUMBER MUST BE 1 OR 2 *** ")
+        except ValueError:
+                print ("*** INVALID INPUT *** ")
+                print ("Please enter 1 or 2. ")
+
+
+
 # Main function
 def main():
     '''
@@ -268,5 +302,6 @@ def main():
     order_books()
     print_order(del_pick)
     confirm_cancel()
+    new_exit()
 
 main()
