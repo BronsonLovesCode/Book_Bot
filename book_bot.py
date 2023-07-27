@@ -237,6 +237,7 @@ def confirm_cancel():
                               print ("Your order has been sent to our store to be prepared,")
                               print ("your book(s) will be with you shortly!")
                               print ()
+                              new_exit ()
                               break
 
                         elif confirm == 2:
@@ -245,6 +246,7 @@ def confirm_cancel():
                               print ()
                               print ("You can restart your order or exit the BOT.")
                               print ()
+                              new_exit ()
                               break
                   else:
                         print ("*** NUMBER MUST BE 1 OR 2 *** ")
@@ -273,7 +275,7 @@ def new_exit():
                             break
 
                     elif confirm == 2:
-                            print ("*** EXITING BOT ***")
+                            print ("*** EXIT ***")
                             order_list.clear()
                             order_cost.clear()
                             customer_details.clear()
