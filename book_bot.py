@@ -2,12 +2,8 @@ import sys
 import random
 from random import randint
 
-
-
 # Name list
 names = ["Bronson", "Adam", "Alain", "Ethan", "Eardwulf", "Santiago", "Daniel", "Dannell", "Luka", "Jason", "Denzelle"]
-
-
 
 # Book list
 book_names = ['Batman: The Killing Joke - Alan Moore','Spider-Man: Fake Red - Yusuke Osawa','Guardians of the Galaxy #1 - Collin Kelly, Jackson Lanzing',
@@ -15,27 +11,17 @@ book_names = ['Batman: The Killing Joke - Alan Moore','Spider-Man: Fake Red - Yu
                'Ghost in the Shell: Stand Alone Complex, Vol. 3: White Maze - Junichi Fujisaku','Watchmen - Alan Moore',
                'The Art of War - Sun Tzu','The Epic of Gilgamesh - Sin-Leqi-Unninni','Divine Comedy - Dante Alighieri','Les Miserables - Victor Hugo','The Bible - Unknown']
 
-
-
 # Price list
 book_prices = [3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 3.50, 13.50, 13.50, 13.50, 13.50, 13.50]
-
-
 
 # List to store ordered books
 order_list = []
 
-
-
 # List to store book prices
 order_cost = []
 
-
-
 # Customer details dictionary
 customer_details = {}
-
-
 
 # Blank input validator
 def not_blank(question):
@@ -49,8 +35,19 @@ def not_blank(question):
             print ("*** BLANK INPUT ***")
             print ()
 
-
-
+# Integer input validator
+def val_int(low, high, question):
+    while True:
+        try:
+            num = int(input(question))
+            if num >= low and num <= high:
+                return num
+            else:
+                print (f"Please enter a number between {low} and {high}. ")
+        except ValueError:
+            print ("*** INVALID INPUT ***")
+            print ()
+                
 # Welcome message
 def welcome():
     '''
@@ -67,40 +64,25 @@ def welcome():
     print ("I will be here to help you order your ideal book.")
     print ()
 
-
-
 # Menu for pickup or delivery
 def order_type():
+    del_pick = ""
+    LOW = 1
+    HIGH = 2
+    question = (f"Please enter a number between {LOW} and {HIGH}.")  
     print ("Is your order for pickup or delivery?")
-    print ("For pickup, enter 1.")
-    print ("For delivery, enter 2.")
-    while True:
-        try:
-                delivery = int(input("Please enter a number. "))
-                if delivery >= 1 and delivery <= 2:
-                    if delivery == 1:
-                            print ("Pickup")
-                            pickup_info()
-                            del_pick = "pickup"
-                            break
-
-                    elif delivery == 2:
-                            print ("Delivery")
-                            delivery_info()
-                            del_pick = "delivery"
-                            break
-                else:
-                    print ()
-                    print ("Number must be 1 or 2.")
-                    print ()
-        except ValueError:
-                print ()
-                print ("*** INVALID INPUT ***")
-                print ()
-                print ("Please enter 1 or 2. ")
-                print ()
+    print ("Press 1 for pickup.")
+    print ("Press 2 for delivery.")
+    delivery = val_int(LOW, HIGH, question)
+    if delivery == 1:
+        print ("Pickup")
+        del_pick = "pickup"
+        pickup_info()
+    else:
+        print ("Delivery")
+        del_pick = "delivery"
+        delivery_info()
     return (del_pick)
-
 
 # Pickup information - name and phone number
 def pickup_info():
@@ -115,8 +97,6 @@ def pickup_info():
     print (customer_details['phone'])
     print ()
     print(customer_details)
-
-
 
 # Delivery information - name, phone number, and address
 def delivery_info():
@@ -142,8 +122,6 @@ def delivery_info():
     print (customer_details['suburb'])
     print (customer_details)
 
-
-
 # Book menu
 def menu():
     number_books = 12
@@ -151,48 +129,33 @@ def menu():
     for count in range (number_books):
         print("{} {} ${:.2f}" .format(count+1,book_names[count],book_prices[count]))
 
-
-
 # Choose total number of books - max 7
 # Book order - from menu - print each book ordered with cast
 def order_books():
 # Ask for total number of books for order
     num_books = 0
-
-    while True:
-        try:
-            num_books = int(input("How many books do you wish to order? "))
-            if num_books >= 1 and num_books <= 7:
-                break
-            else:
-                print("*** ORDER MUST BE BETWEEN 1 and 7 *** ")
-        except ValueError:
-            print("*** INVALID INPUT ***")
-            print("Please enter a number between 1 and 7. ")
-
-
-    print(num_books)
+    LOW = 1
+    HIGH = 7
+    MENU_LOW = 1
+    MENU_HIGH = 12
+    question = (f"Enter a number between {LOW} and {HIGH}. ")
+    print ("How many books do you wish to order? ")
+    num_books = val_int(LOW, HIGH, question)
 
 # Choose books from menu
     for item in range(num_books):
         while num_books > 0:
-            while True:
-                try:
-                    books_ordered = int(input("Please choose your book(s) by entering the corresponding number from the menu. "))
-                    if books_ordered >= 1 and books_ordered <= 12:
-                        break
-                    else:
-                        print("*** ORDER MUST BE BETWEEN 1 AND 7 *** ")
-                except ValueError:
-                    print("*** INVALID INPUT ***")
-                    print("Please enter a number between 1 and 7. ")
-            books_ordered = books_ordered -1
-            order_list.append(book_names[books_ordered])
-            order_cost.append(book_prices[books_ordered])
-            print("{} ${:.2f}" .format(book_names[books_ordered],book_prices[books_ordered]))
-            num_books = num_books-1
-
-
+             print ()
+             print ("Please choose your book(s) by" 
+             "entering the corresponding number(s) from the menu.")
+             question = (f"Enter a number between {MENU_LOW} and {MENU_HIGH}. ")
+             books_ordered = val_int(MENU_LOW, MENU_HIGH, question) 
+             books_ordered = books_ordered -1
+             order_list.append(book_names[books_ordered])
+             order_cost.append(book_prices[books_ordered])
+             print("{} ${:.2f}" .format(book_names[books_ordered],
+                                        book_prices[books_ordered]))
+             num_books = num_books-1
 
 # Print order out - Including if order is delivery or pickup and names and price of each book - total cost including any delivery charge
 def print_order(del_pick):
@@ -216,8 +179,6 @@ def print_order(del_pick):
     print("*** TOTAL ORDER COST ***")
     print(f"${total_cost:.2f}")
     print()
-
-
 
 # Cancel or proceed with order
 def confirm_cancel():
@@ -286,8 +247,6 @@ def new_exit():
         except ValueError:
                 print ("*** INVALID INPUT *** ")
                 print ("Please enter 1 or 2. ")
-
-
 
 # Main function
 def main():
