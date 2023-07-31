@@ -69,17 +69,19 @@ def order_type():
     del_pick = ""
     LOW = 1
     HIGH = 2
-    question = (f"Please enter a number between {LOW} and {HIGH}.")  
+    question = (f"Please enter a number between {LOW} and {HIGH}. ")  
     print ("Is your order for pickup or delivery?")
     print ("Press 1 for pickup.")
     print ("Press 2 for delivery.")
     delivery = val_int(LOW, HIGH, question)
     if delivery == 1:
-        print ("Pickup")
+        print ()
+        print ("*** PICKUP ***")
         del_pick = "pickup"
         pickup_info()
     else:
-        print ("Delivery")
+        print ()
+        print ("*** DELIVERY ***")
         del_pick = "delivery"
         delivery_info()
     return (del_pick)
@@ -182,71 +184,55 @@ def print_order(del_pick):
 
 # Cancel or proceed with order
 def confirm_cancel():
+      LOW = 1
+      HIGH = 2
+      question = (f"Please enter a number between {LOW} and {HIGH}.")  
       print ("Please confirm your order.")
       print ("To confirm order, enter 1.")
       print ("To cancel order, enter 2.")
       print ()
 
-      while True:
-            try:
-                  confirm = int(input("Please enter a number. "))
-                  if confirm >= 1 and confirm <= 2:
-                        if confirm == 1:
-                              print ()
-                              print ("*** ORDER CONFIRMED ***")
-                              print ()
-                              print ("Your order has been sent to our store to be prepared,")
-                              print ("your book(s) will be with you shortly!")
-                              print ()
-                              new_exit ()
-                              break
+      confirm = val_int(LOW, HIGH, question)
+      if confirm == 1:
+        print ()
+        print ("*** ORDER CONFIRMED ***")
+        print ()
+        print ("Your order has been sent to our store to be prepared,")
+        print ("your book(s) will be with you shortly!")
+        print ()
+        new_exit ()
 
-                        elif confirm == 2:
-                              print ()
-                              print ("*** ORDER CANCELLED ***")
-                              print ()
-                              print ("You can restart your order or exit the BOT.")
-                              print ()
-                              new_exit ()
-                              break
-                  else:
-                        print ("*** NUMBER MUST BE 1 OR 2 *** ")
-            except ValueError:
-                  print ("*** INVALID INPUT ***")
-                  print ()
-                  print ("Please enter 1 or 2. ")
-                  print ()
+      elif confirm == 2:
+        print ()
+        print ("*** ORDER CANCELLED ***")
+        print ()
+        print ("You can restart your order or exit the BOT.")
+        print ()
+        new_exit ()
 
 # Option for new order/exit
 def new_exit():
+    LOW = 1
+    HIGH = 2
+    question = (f"Please enter a number between {LOW} and {HIGH}.")  
     print ("Do you wish to start another order or exit?")
     print ("To start another order, enter 1.")
     print ("To exit the BOT, enter 2. ")
+    confirm = val_int(LOW, HIGH, question)
+    
+    if confirm == 1:
+        print ("*** NEW ORDER ***")
+        order_list.clear()
+        order_cost.clear()
+        customer_details.clear()
+        main()
 
-    while True:
-        try:
-                confirm = int(input("Please enter a number. "))
-                if confirm >= 1 and confirm <= 2:
-                    if confirm == 1:
-                            print ("*** NEW ORDER ***")
-                            order_list.clear()
-                            order_cost.clear()
-                            customer_details.clear()
-                            main()
-                            break
-
-                    elif confirm == 2:
-                            print ("*** EXIT ***")
-                            order_list.clear()
-                            order_cost.clear()
-                            customer_details.clear()
-                            sys.exit()                       
-                            break
-                else:
-                    print ("*** NUMBER MUST BE 1 OR 2 *** ")
-        except ValueError:
-                print ("*** INVALID INPUT *** ")
-                print ("Please enter 1 or 2. ")
+    elif confirm == 2:
+        print ("*** EXIT ***")
+        order_list.clear()
+        order_cost.clear()
+        customer_details.clear()
+        sys.exit()                       
 
 # Main function
 def main():
