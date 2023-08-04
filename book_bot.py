@@ -71,6 +71,18 @@ def val_int(low, high, question):
             print()
 
 
+def check_string(question):
+    while True:
+        response = input(question)
+        x = response.isalpha()
+        if x == False:
+            print()
+            print("***INPUT MUST ONLY CONTAIN LETTERS ***")
+            print()
+        else:
+            print(response.title())
+
+
 # Welcome message
 def welcome():
     """Message that welcomes user to the bot."""
@@ -109,7 +121,7 @@ def pickup_info():
     """Gather customer details for pickup."""
     print()
     question = ("Please enter your name. ")
-    customer_details['name'] = not_blank(question)
+    customer_details['name'] = check_string(question)
     print(customer_details['name'])
     print()
 
@@ -125,7 +137,7 @@ def delivery_info():
     """Gather customer details for delivery."""
     print()
     question = ("Please enter your name. ")
-    customer_details['name'] = not_blank(question)
+    customer_details['name'] = check_string(question)
     print(customer_details['name'])
 
     question = ("Please enter your phone number. ")
@@ -137,11 +149,11 @@ def delivery_info():
     print(customer_details['house'])
 
     question = ("Please enter your street name. ")
-    customer_details['street'] = not_blank(question)
+    customer_details['street'] = check_string(question)
     print(customer_details['street'])
 
     question = ("Please enter your suburb. ")
-    customer_details['suburb'] = not_blank(question)
+    customer_details['suburb'] = check_string(question)
     print(customer_details['suburb'])
     print(customer_details)
 
