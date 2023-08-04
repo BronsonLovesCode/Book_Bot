@@ -44,7 +44,7 @@ customer_details = {}
 
 # Blank input validator
 def not_blank(question):
-    """Check that  what is inputed is not blank."""
+    """Check that what is inputed is not blank."""
     valid = False
     while not valid:
         response = input(question)
@@ -67,11 +67,14 @@ def val_int(low, high, question):
             else:
                 print(f"Please enter a number between {low} and {high}. ")
         except ValueError:
+            print()
             print("*** INVALID INPUT ***")
             print()
 
 
+# String validator
 def check_string(question):
+    """Check what is inputed does not contain any special characters."""
     while True:
         response = input(question)
         x = response.isalpha()
